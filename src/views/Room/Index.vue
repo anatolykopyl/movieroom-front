@@ -106,14 +106,15 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  font-size: 32px;
-}
 .progress-bar {
   width: 400px;
   height: 25px;
   border: 1px solid black;
   margin: auto;
+}
+
+h1 {
+  margin-bottom: 32px;
 }
 
 video {

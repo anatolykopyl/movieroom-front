@@ -1,15 +1,17 @@
 <template>
   <div class="home">
-    <input
-      type="text"
-      v-model="magnet"
-      placeholder="magnet"
-    >
-    <button
-      @click="submit"
-    >
-      Create room
-    </button>
+    <form @submit.prevent>
+      <input
+        type="text"
+        v-model="magnet"
+        placeholder="magnet link"
+      >
+      <button
+        @click="submit"
+      >
+        create room
+      </button>
+    </form>
   </div>
 </template>
 
@@ -34,3 +36,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+form {
+  > * {
+    margin: 0 8px;
+  }
+}
+</style>

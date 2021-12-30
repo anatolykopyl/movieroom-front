@@ -1,7 +1,22 @@
 <template>
-  <router-view/>
+  <div>
+    <h2 id="site-name">watch2gether</h2>
+    <router-view/>
+  </div>
 </template>
 
 <style lang="scss">
-@import '@/scss/style.scss'
+@import '@/scss/style.scss';
+
+#site-name {
+  margin-bottom: 96px;
+}
+
+#app {
+  height: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
