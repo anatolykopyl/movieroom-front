@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import createRoom from './createRoom';
+import createRoom from '@/api/createRoom';
 
 import { Room } from '@/interfaces';
 

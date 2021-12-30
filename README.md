@@ -1,24 +1,5 @@
-# watch2gether-front
+# W2G Frontend
 
-## Project setup
-```
-npm install
-```
+Frontend for watch2gether.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+A website that allows you and your friends to watch a movie in sync.

@@ -24,10 +24,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import getRoom from './getRoom';
-import getStatus from './getStatus';
-import setPosition from './setPosition';
-import getPosition from './getPosition';
+import getRoom from '@/api/getRoom';
+import getStatus from '@/api/getStatus';
+import setPosition from '@/api/setPosition';
+import getPosition from '@/api/getPosition';
 
 import ProgressBar from './components/ProgressBar.vue';
 
