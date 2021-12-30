@@ -3,6 +3,7 @@ export interface Room {
   magnet: string;
   createdAt: Date;
   movie?: string;
+  filename?: string;
   downloaded?: boolean;
   downloadedAt?: Date;
   position: number;

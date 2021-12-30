@@ -12,12 +12,12 @@
     <video
       v-if="room.downloaded"
       controls
-      :src="movieUrl"
       ref="video"
       @seeked="seeked"
       @play="playing = true"
       @pause="playing = false"
     >
+      <source :src="movieUrl" type="video/mp4">
     </video>
   </div>
 </template>
@@ -55,7 +55,7 @@ export default defineComponent({
   },
   computed: {
     movieUrl() {
-      return `${process.env.VUE_APP_MOVIES}?id=${this.room.id}`;
+      return `${process.env.VUE_APP_MOVIES}?filename=${this.room.filename}`;
     },
     progressPerc() {
       return Math.floor(this.progress * 100);
@@ -68,7 +68,7 @@ export default defineComponent({
       this.progressInterval = setInterval(async () => {
         const result = await getStatus(this.id);
         this.progress = result.progress;
-        if (result.downloaded) {
+        if (result.downloaded || this.progress === 1) {
           this.room.downloaded = true;
           clearInterval(this.progressInterval);
         }
