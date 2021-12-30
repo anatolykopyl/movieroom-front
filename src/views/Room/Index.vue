@@ -1,13 +1,12 @@
 <template>
   <div class="room">
     <h1>{{ room.movie }}</h1>
-    <div v-if="!room.downloaded">
-      <div>{{ progressPerc }}%</div>
-      <ProgressBar
-        :progress="progress"
-        class="progress-bar"
-      />
-    </div>
+    <ProgressBar
+      v-if="!room.downloaded"
+      :id="id"
+      @downloaded="onDownloaded"
+      class="progress-bar"
+    />
 
     <video
       v-if="room.downloaded"
@@ -25,7 +24,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import getRoom from '@/api/getRoom';
-import getStatus from '@/api/getStatus';
 import setPosition from '@/api/setPosition';
 import getPosition from '@/api/getPosition';
 
@@ -47,9 +45,7 @@ export default defineComponent({
   data() {
     return {
       room: {} as Room,
-      progress: 0,
       playing: false,
-      progressInterval: undefined as undefined | number,
       positionInterval: undefined as undefined | number,
     };
   },
@@ -57,23 +53,18 @@ export default defineComponent({
     movieUrl() {
       return `${process.env.VUE_APP_MOVIES}?filename=${this.room.filename}`;
     },
-    progressPerc() {
-      return Math.floor(this.progress * 100);
-    },
   },
   async mounted() {
     this.room = await getRoom(this.id);
-
-    if (!this.room.downloaded) {
-      this.progressInterval = setInterval(async () => {
-        const result = await getStatus(this.id);
-        this.progress = result.progress;
-        if (result.downloaded || this.progress === 1) {
-          this.room.downloaded = true;
-          clearInterval(this.progressInterval);
-        }
-      }, 2 * 1000);
-    } else {
+    if (this.room.downloaded) {
+      this.onDownloaded();
+    }
+  },
+  beforeUnmount() {
+    clearInterval(this.positionInterval);
+  },
+  methods: {
+    onDownloaded() {
       this.room.downloaded = true;
       this.$nextTick(() => {
         const element = this.$refs.video as HTMLVideoElement;
@@ -89,13 +80,7 @@ export default defineComponent({
           }
         }, 2 * 1000);
       });
-    }
-  },
-  beforeUnmount() {
-    clearInterval(this.progressInterval);
-    clearInterval(this.positionInterval);
-  },
-  methods: {
+    },
     seeked() {
       const element = this.$refs.video as HTMLVideoElement;
       const position = element.currentTime;
