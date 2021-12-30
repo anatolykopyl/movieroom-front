@@ -7,4 +7,5 @@ export interface Room {
   downloaded?: boolean;
   downloadedAt?: Date;
   position: number;
+  syncedAt: Date;
 }

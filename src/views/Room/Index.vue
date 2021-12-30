@@ -71,9 +71,8 @@ export default defineComponent({
         this.positionInterval = setInterval(async () => {
           if (this.playing) {
             const serverPosition = await getPosition(this.id);
-            // this.room.position = element.currentTime;
-            if (Math.abs(this.room.position - serverPosition) > 2) {
-              this.room.position = serverPosition;
+            // console.log(`L: ${element.currentTime}; S: ${serverPosition}`);
+            if (Math.abs(element.currentTime - serverPosition) > 2) {
               element.currentTime = serverPosition;
               console.log('Synced');
             }
@@ -83,8 +82,7 @@ export default defineComponent({
     },
     seeked() {
       const element = this.$refs.video as HTMLVideoElement;
-      const position = element.currentTime;
-      setPosition(this.id, position);
+      setPosition(this.id, element.currentTime);
     },
   },
 });
