@@ -12,6 +12,7 @@
         create room
       </button>
     </form>
+    <a href="https://nutbread.github.io/t2m/">convert .torrent file to a magnet link</a>
   </div>
 </template>
 
@@ -39,6 +40,8 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 form {
+  margin-bottom: 32px;
+
   > * {
     margin: 0 8px;
   }

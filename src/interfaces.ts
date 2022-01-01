@@ -4,6 +4,8 @@ export interface Room {
   createdAt: Date;
   movie?: string;
   filename?: string;
+  downloadedProg?: number;
+  reencodedProg?: number;
   downloaded?: boolean;
   downloadedAt?: Date;
   position: number;

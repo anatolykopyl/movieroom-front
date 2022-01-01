@@ -3,7 +3,7 @@
     <div
       class="fill"
       :style="{
-        width: `${progress * 100}%`
+        width: `${progressPerc}%`
       }"
     />
     <div class="digits">
@@ -14,39 +14,18 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import getStatus from '@/api/getStatus';
 
 export default defineComponent({
-  emits: ['downloaded'],
   props: {
-    id: {
-      type: String,
+    progress: {
+      type: Number,
       required: true,
     },
-  },
-  data() {
-    return {
-      progress: 0,
-      progressInterval: undefined as undefined | number,
-    };
   },
   computed: {
     progressPerc() {
       return Math.floor(this.progress * 100);
     },
-  },
-  mounted() {
-    this.progressInterval = setInterval(async () => {
-      const result = await getStatus(this.id);
-      this.progress = result.progress;
-      if (result.downloaded || this.progress === 1) {
-        this.$emit('downloaded');
-        clearInterval(this.progressInterval);
-      }
-    }, 2 * 1000);
-  },
-  beforeUnmount() {
-    clearInterval(this.progressInterval);
   },
 });
 </script>

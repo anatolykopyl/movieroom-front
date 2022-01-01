@@ -1,11 +1,10 @@
 <template>
   <div class="room">
     <h1>{{ room.movie }}</h1>
-    <ProgressBar
+    <Progress
       v-if="!room.downloaded"
       :id="id"
       @downloaded="onDownloaded"
-      class="progress-bar"
     />
 
     <video
@@ -27,14 +26,14 @@ import getRoom from '@/api/getRoom';
 import setPosition from '@/api/setPosition';
 import getPosition from '@/api/getPosition';
 
-import ProgressBar from './components/ProgressBar.vue';
+import Progress from './components/Progress.vue';
 
 import { Room } from '@/interfaces';
 
 export default defineComponent({
   name: 'Room',
   components: {
-    ProgressBar,
+    Progress,
   },
   props: {
     id: {
@@ -89,13 +88,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.progress-bar {
-  width: 400px;
-  height: 25px;
-  border: 1px solid black;
-  margin: auto;
-}
-
 h1 {
   margin-bottom: 32px;
 }
