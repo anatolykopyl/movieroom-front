@@ -12,13 +12,13 @@ html, body {
   height: 100%;
 }
 
-button, input[type="text"], textarea {
+button, input[type="text"], input[type="file"], textarea {
   padding: 8px 12px;
   background: none;
   border: 1px solid black;
 }
 
-button, a {
+button, a, input[type="file"] {
   cursor: pointer;
 }
 
@@ -28,4 +28,14 @@ h1 {
 
 h2 {
   font-size: 24px;
+}
+
+.secondary {
+  color: #818181;
+}
+
+::file-selector-button {
+  background: none;
+  border: 1px solid black;
+  font-family: 'EB Garamond', serif;
 }

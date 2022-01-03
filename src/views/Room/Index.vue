@@ -63,8 +63,10 @@ export default defineComponent({
     clearInterval(this.positionInterval);
   },
   methods: {
-    onDownloaded() {
-      this.room.downloaded = true;
+    async onDownloaded() {
+      if (!this.room.downloaded) {
+        this.room = await getRoom(this.id);
+      }
       this.$nextTick(() => {
         const element = this.$refs.video as HTMLVideoElement;
         this.positionInterval = setInterval(async () => {

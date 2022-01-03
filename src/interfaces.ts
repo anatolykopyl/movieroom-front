@@ -1,6 +1,6 @@
 export interface Room {
   id: string;
-  magnet: string;
+  magnet?: string;
   createdAt: Date;
   movie?: string;
   filename?: string;
