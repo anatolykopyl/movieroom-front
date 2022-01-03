@@ -3,7 +3,6 @@
     <form @submit.prevent>
       <input
         type="file"
-        placeholder="file"
         @change="handleFile"
         accept="video/mp4"
       >

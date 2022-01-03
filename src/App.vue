@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 id="site-name">watch2gether</h2>
+    <h2 id="site-name">movieroom</h2>
     <router-view/>
   </div>
 </template>
